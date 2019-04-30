@@ -147,7 +147,7 @@ class Match
         e = 100 - 1.0 / (1.0 + (10.0**((losers_elo - winner.elo) / 400.0))) * 100
         
         winner.tau += 0.5
-        delta = e * ratio * (Elo::DELTA_TAU**20))
+        delta = e * ratio * (Elo::DELTA_TAU**20)
         winners_delta << delta
         winner.elo += delta
       end
