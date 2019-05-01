@@ -147,7 +147,7 @@ class Match
         e = 100 - 1.0 / (1.0 + (10.0**((losers_elo - winner.elo) / 400.0))) * 100
         
         winner.tau += 0.5
-        delta = e * ratio * .22
+        delta = e * ratio * 0.22
         winners_delta << delta
         winner.elo += delta
       end
@@ -155,7 +155,7 @@ class Match
       losers.each do |loser|
         e = 100 - 1.0 / (1.0 + (10.0**((loser.elo - winners_elo) / 400.0))) * 100
         loser.tau += 0.5
-        delta = e * ratio * .22
+        delta = e * ratio * 0.22
         losers_delta << delta
         loser.elo -= delta
       end
