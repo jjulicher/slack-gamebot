@@ -144,7 +144,7 @@ class Match
               end
 
       winners.each do |winner|
-        e = 1.0 / (1.0 + (10.0**((losers[0]. - winner.elo) / 400.0)))
+        e = 1.0 / (1.0 + (10.0**((losers_elo - winner.elo) / 400.0)))
         delta = 24 * (1 - e)
         winners_delta << delta
         winner.elo += delta
