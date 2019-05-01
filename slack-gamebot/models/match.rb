@@ -144,21 +144,15 @@ class Match
               end
 
       winners.each do |winner|
-        e = 100 - 1.0 / (1.0 + (10.0**((losers_elo - winner.elo) / 400.0))) * 100
-        rankRatio = winner.rank/(losers[0].rank+winner.rank)
-        points = winner.rank + (22 * (ratio-rankRatio))
-        delta = e * ratio * 0.22 
-        delta = points
+        e = 1.0 / (1.0 + (10.0**((losers[0]. - winner.elo) / 400.0)))
+        delta = 24 * (1 - e)
         winners_delta << delta
         winner.elo += delta
       end
 
       losers.each do |loser|
-        e = 100 - 1.0 / (1.0 + (10.0**((loser.elo - winners_elo) / 400.0))) * 100
-        rankRatio = losers[0].rank/(winners[0].rank+loser.rank)
-        points = loser.rank + (22 * (((-1 +ratio)*-1) - rankRatio))
-        delta = e * ratio * 0.22
-        delta = points
+        e = 1.0 / (1.0 + (10.0**((loser.elo - winners_elo) / 400.0)))
+        delta = 24 * (0 - e)
         losers_delta << delta
         loser.elo -= delta
       end
