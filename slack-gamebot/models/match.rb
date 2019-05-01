@@ -145,14 +145,14 @@ class Match
 
       winners.each do |winner|
         e = 1.0 / (1.0 + (10.0**((losers_elo - winner.elo) / 400.0)))
-        delta = 24 * (1 - e)
+        delta = 24 * (ratio - e)
         winners_delta << delta
         winner.elo += delta
       end
 
       losers.each do |loser|
         e = 1.0 / (1.0 + (10.0**((loser.elo - winners_elo) / 400.0)))
-        delta = 24 * (0 - e)
+        delta = 24 * (ratio - e)
         losers_delta << delta
         loser.elo -= delta
       end
