@@ -134,7 +134,11 @@ class Match
 
       losers_ratio = losers.any? ? [winners.size.to_f / losers.size, 1].min : 1
       winners_ratio = winners.any? ? [losers.size.to_f / winners.size, 1].min : 1
-
+      
+      base = 40.0
+      divisor = 300.0
+      availablePoints = 20
+      
       ratio = if winners_elo == losers_elo && tied?
                 0 # no elo updates when tied and elo is equal
               elsif tied?
@@ -144,15 +148,15 @@ class Match
               end
 
       winners.each do |winner|
-        e = 1.0 / (1.0 + (10.0**((losers_elo - winner.elo) / 400.0)))
-        delta = 24 * (ratio - e)
+        e = 1.0 / (1.0 + (base**((losers_elo - winner.elo) / divisor)))
+        delta = availablePoints * (ratio - e)
         winners_delta << delta
         winner.elo += delta
       end
 
       losers.each do |loser|
-        e = 1.0 / (1.0 + (10.0**((winners_elo - loser.elo) / 400.0)))
-        delta = 24 *  ( (ratio == 0.5 ? ratio : 0)- e)
+        e = 1.0 / (1.0 + (base**((winners_elo - loser.elo) / divisor)))
+        delta = availablePoints *  ( (ratio == 0.5 ? ratio : 0)- e)
         losers_delta << delta
         loser.elo -= delta
       end
