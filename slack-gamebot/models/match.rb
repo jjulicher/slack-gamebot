@@ -150,7 +150,7 @@ class Match
       winners.each do |winner|
         e = 1.0 / (1.0 + (base**((losers_elo - winner.elo) / divisor)))
         delta = availablePoints * (ratio - e)
-        delta = delta.rount(0)
+        delta = delta.round(0)
         winners_delta << delta
         winner.elo += delta
       end
@@ -158,7 +158,7 @@ class Match
       losers.each do |loser|
         e = 1.0 / (1.0 + (base**((winners_elo - loser.elo) / divisor)))
         delta = -1 * availablePoints *  ( (ratio == 0.5 ? ratio : 0)- e)
-        delta = delta.rount(0)
+        delta = delta.round(0)
         losers_delta << delta
         loser.elo -= delta
       end
