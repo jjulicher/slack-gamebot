@@ -137,7 +137,7 @@ class Match
       
       base = Elo::POWER
       divisor = Elo::DIVISOR
-      availablePoints = Elo::Points
+      availablePoints = Elo::POINTS
       
       ratio = if winners_elo == losers_elo && tied?
                 0 # no elo updates when tied and elo is equal
