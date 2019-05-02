@@ -156,7 +156,7 @@ class Match
 
       losers.each do |loser|
         e = 1.0 / (1.0 + (base**((winners_elo - loser.elo) / divisor)))
-        delta = availablePoints *  ( (ratio == 0.5 ? ratio : 0)- e)
+        delta = -1 * availablePoints *  ( (ratio == 0.5 ? ratio : 0)- e)
         losers_delta << delta
         loser.elo -= delta
       end
